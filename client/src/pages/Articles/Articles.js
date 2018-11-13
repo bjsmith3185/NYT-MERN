@@ -17,9 +17,9 @@ class Articles extends Component {
     qty: ""
   };
   
-  // componentDidMount() {
-  //   this.loadArticles();
-  // }
+  componentDidMount() {
+    this.loadArticles();
+  }
 
   loadArticles = () => {
 
@@ -117,20 +117,20 @@ class Articles extends Component {
               <h1>Articles On My List</h1>
             </Jumbotron>
             {this.state.articles.length ? (
-              <h1>this is the result</h1>
-              // <List>
-              //   {this.state.articles.map(article => (
-              //     <ListItem key={article._id}>
-              //       <Link to={"/lists/" + article._id}>
-              //         <strong>
-              //           {article.search} by {article.start}
-              //         </strong>
-              //       </Link>
-              //       <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
-              //     </ListItem>
-              //   ))}
-              // </List>
-            ) : (
+             
+             <List>
+             {this.state.articles.map(article => (
+               <ListItem key={article._id}>
+                 <Link to={"/articles/" + article._id}>
+                   <strong>
+                     {article.headline}
+                   </strong>
+                 </Link>
+                 <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+               </ListItem>
+             ))}
+           </List>
+                 ) : (
               <h3>No items to Display</h3>
             )}
           </Col>

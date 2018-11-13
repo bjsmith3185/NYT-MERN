@@ -3,7 +3,7 @@ import axios from "axios";
 export default {
   // Gets all articles
   getArticles: function() {
-    return axios.get("/");
+    return axios.get("/api");
   },
 
   // getArticles: function() {

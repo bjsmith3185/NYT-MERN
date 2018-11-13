@@ -9,7 +9,7 @@ const db = require("../models");
 // Routes to the databaseController
 // and to the NYT API
 
-router.get("/", function(req, res) {
+router.get("/api", function(req, res) {
 console.log("inside the get(all)")
 
   db.Articles.find({})
