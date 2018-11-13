@@ -1,0 +1,12 @@
+
+
+Pages/Articles.js   == this calls API.getArticles()
+
+utils/API.js  ==  this does the axios.get("/) to the server
+
+
+routes/index.js  ==  router.get("/",  should do a call to the db.Articles.find({}) and return res.json()
+                    ** i have the call to the database in another folder (controllers/dataBaseController.js)
+                    ** but for the purpose of getting it up and running i am calling the database from routes/index.js
+
+when i console log(res) line32 inside Pages/Articles.js it gives me the index.html file from client/Public/index.html???

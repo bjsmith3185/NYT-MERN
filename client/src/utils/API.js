@@ -14,9 +14,6 @@ export default {
   //    })
   // },
 
-
-
-
   // Gets the article with the given id
   getArticle: function(id) {
     return axios.get("/api/articles/" + id);
