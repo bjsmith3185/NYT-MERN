@@ -8,6 +8,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
 class Articles extends Component {
+ 
   state = {
     articles: [],
     search: "",
@@ -15,16 +16,22 @@ class Articles extends Component {
     end: "",
     qty: ""
   };
-
-  componentDidMount() {
-    this.loadArticles();
-  }
+  
+  // componentDidMount() {
+  //   this.loadArticles();
+  // }
 
   loadArticles = () => {
+
+   
     API.getArticles()
       .then(res => {
-        console.log(res.data[0])
+        
         this.setState({ articles: res.data, search: "", start: "", end: "", qty: "" })
+        console.log("inside getArticles()")
+        console.log(res)
+        console.log("this is the articles []")
+        console.log(this.state.articles);
       })
       .catch(err => console.log(err));
   };
@@ -43,6 +50,10 @@ class Articles extends Component {
   };
 
   handleFormSubmit = event => {
+    console.log(`
+    search: ${this.state.search}
+    qty: ${this.state.qty}
+    `)
     event.preventDefault();
     // if (this.state.title && this.state.author) {
       API.saveArticle({
@@ -106,18 +117,19 @@ class Articles extends Component {
               <h1>Articles On My List</h1>
             </Jumbotron>
             {this.state.articles.length ? (
-              <List>
-                {this.state.articles.map(article => (
-                  <ListItem key={article._id}>
-                    <Link to={"/lists/" + article._id}>
-                      <strong>
-                        {article.search} by {article.start}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
-                  </ListItem>
-                ))}
-              </List>
+              <h1>this is the result</h1>
+              // <List>
+              //   {this.state.articles.map(article => (
+              //     <ListItem key={article._id}>
+              //       <Link to={"/lists/" + article._id}>
+              //         <strong>
+              //           {article.search} by {article.start}
+              //         </strong>
+              //       </Link>
+              //       <DeleteBtn onClick={() => this.deleteArticle(article._id)} />
+              //     </ListItem>
+              //   ))}
+              // </List>
             ) : (
               <h3>No items to Display</h3>
             )}

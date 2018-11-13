@@ -5,6 +5,18 @@ export default {
   getArticles: function() {
     return axios.get("/");
   },
+
+  // getArticles: function() {
+  //    axios.get("/")
+  //    .then(data => {
+  //      console.log(data)
+  //      return data;
+  //    })
+  // },
+
+
+
+
   // Gets the article with the given id
   getArticle: function(id) {
     return axios.get("/api/articles/" + id);
