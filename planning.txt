@@ -1,0 +1,13 @@
+
+Database; nytreact
+
+Collection; articles
+
+
+
+- react component takes in variables
+- utils folder/ API.js will make a call to the server with the search vaiables.
+- routes/api/lists.js will recieve the call from the client.
+- helper/nytapi.js will then call the nyt api and return the data
+- controller/listController.js will then store the data in mongo.
+- (may be able to delete the scripts folder);
