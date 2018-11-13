@@ -2,15 +2,15 @@ const db = require("../models");
 
 // Defining methods for the articlesController
 module.exports = {
-  findAll: function(req, res) {
-    db.Articles
+  findAllSaved: function(req, res) {
+    db.SavedArticles
       .find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  findById: function(req, res) {
-    db.Articles
+  findByIdSaved: function(req, res) {
+    db.SavedArticles
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
@@ -18,30 +18,30 @@ module.exports = {
   // create: function(req, res) {
   //   console.log("this is in databaseController, req")
   //   console.log(req.body)
-  //   db.Articles
+  //   db.SavedArticles
   //     .create(req.body)
   //     .then(dbModel => res.json(dbModel))
   //     .catch(err => res.status(422).json(err));
   // },
 
-  create: function(req, res) {
+  createSaved: function(req, res) {
     // console.log("this is in databaseController, req")
     // console.log(req)
-    db.Articles
+    db.SavedArticles
       .create(req)
       // .then(dbModel => res.json(dbModel))
       // .catch(err => res.status(422).json(err));
   },
  
 
-  update: function(req, res) {
-    db.Articles
+  updateSaved: function(req, res) {
+    db.SavedArticles
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  remove: function(req, res) {
-    db.Articles
+  removeSaved: function(req, res) {
+    db.SavedArticles
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))

@@ -1,4 +1,6 @@
 const db = require("../models");
+const nytAPI = require("../NYT-API/nyt-ajax");
+
 
 // Defining methods for the articlesController
 module.exports = {
@@ -15,24 +17,21 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // create: function(req, res) {
-  //   console.log("this is in databaseController, req")
-  //   console.log(req.body)
-  //   db.Articles
-  //     .create(req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
+  create: function(req, res) {
+    db.Articles
+      .create(req.body)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 
   create: function(req, res) {
-    console.log("this is in databaseController, req")
-    console.log(req)
-    db.Articles
-      .create(req)
-      // .then(dbModel => res.json(dbModel))
-      // .catch(err => res.status(422).json(err));
+    console.log("!!!!!!!!!!!!!!!!!!!!!!11")
+    console.log(req.body)
+    console.log(nytAPI(req.body))
+    
   },
- 
+
+
 
   update: function(req, res) {
     db.Articles

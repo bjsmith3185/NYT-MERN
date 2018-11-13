@@ -22,8 +22,17 @@ export default {
   deleteArticle: function(id) {
     return axios.delete("/api/articles/" + id);
   },
-  // Saves a article to the database
-  saveArticle: function(articleData) {
+  // adds searches to the database
+  findArticle: function(articleData) {
+    console.log("this is to add searched articles")
+    console.log(articleData)
     return axios.post("/api/articles", articleData);
+  },
+
+    // Saves a article to the database
+  saveArticle: function(articleData) {
+    console.log("2222222222222")
+    console.log("/api/articles/"+ articleData.articleId)
+    return axios.post("/api/articles/"+ articleData.articleId, articleData);
   }
 };
