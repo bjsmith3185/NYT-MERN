@@ -39,10 +39,64 @@ router.post("/api/save", function(req, res) {
   console.log(typeof(req))
   
   db.SavedArticles.create(req.body)
-  .then()
-  .catch()
+  .then(function(dbArticle) {
+    console.log("this is the res.json from savedArticles.create")
+    // If we were able to successfully find Articles, send them back to the client
+    res.json(dbArticle);
+  })
+  .catch(function(err) {
+    // If an error occurred, send it to the client
+    res.json(err);
+  })
 
 })
+
+
+router.get("/api/save/all", function(req, res) {
+  console.log("this is inside get/saved");
+    db.SavedArticles.find({})
+    .then(function(dbSaved) {
+      console.log("this is the [] of saved articles");
+      res.json(dbSaved)
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    })
+})
+
+router.post("/api/save/delete/:id", function(req, res) {
+  console.log("this is the id to remove: " + req.params.id)
+  db.SavedArticles
+  .findById({ _id: req.params.id })
+  .then(dbModel => dbModel.remove())
+  .then(dbModel => res.json(dbModel))
+  .catch(err => res.status(422).json(err));
+
+})
+
+
+
+router.post("/api/articles", function(req, res) {
+  console.log("this is inside update article");
+  console.log(req.body.data.articleId);
+  // console.log(`${articleId}: ${req.body.data.articleId}`)
+
+  db.Articles
+  .findOneAndUpdate({ articleId: req.body.data.articleId }, 
+                    { $set: { saved: true } })
+  .then(dbModel => res.json(dbModel))
+  .catch(err => res.status(422).json(err));
+
+
+
+})
+
+
+
+
+
+
 
 
 // the post route below will take in the search params

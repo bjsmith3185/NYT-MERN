@@ -9,6 +9,7 @@ const articleSchema = new Schema({
   source: String,
   articleId: String,
   image: String,
+  saved: {type: Boolean, default: false},
   date: { type: Date, default: Date.now }
 });
 

@@ -7,67 +7,46 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Articles extends Component {
+class Saved extends Component {
 
   state = {
-    articles: [],
+    savedArticles: [],
   };
 
   componentDidMount() {
-    this.loadArticles();
+    this.loadSavedArticles();
   }
 
-  loadArticles = () => {
-
-
-    API.getArticles()
+  loadSavedArticles = () => {
+    console.log("running loadSavedArticles()")
+    API.getSavedArticles()
       .then(res => {
-
-        this.setState({ articles: res.data })
-        console.log("inside getArticles()")
-        console.log(res)
-        console.log("this is the articles []")
-        console.log(this.state.articles);
+        console.log("this is the retrun from get saved articles res.data")
+        console.log(res.data);
+        this.setState({ savedArticles: res.data })
+        // console.log("inside getArticles()")
+        // console.log(res)
+        console.log("this is the savedArticles []")
+        console.log(this.state.savedArticles);
       })
       .catch(err => console.log(err));
   };
 
-  saveArticle = event => {
-    console.log("saving");
+  removeArticle = event => {
+    console.log("removing");
     console.log(event)
-   
-    API.saveArticle(event)
+    
+    API.removeArticle(event)
     // .then(res => this.loadArticles())
     .then(function(data) {
-      console.log("this is the return from saving article")
-      console.log(data.data.saved)
-
-      //===================================
-        if (data.data.saved === false) {
-          console.log("saved article is false")
-          //  API.findArticle(data.data.articleId)
-          API.findArticle(data)
-           .then()
-        } else {
-
-        }
-     
-
-      //================================
-
-
+      console.log("this is the return from removing article")
+      console.log(data)
     })
     .catch(err => console.log(err));
 
-
-// console.log("this is the value of event: ");
-// console.log(event)
-    // API.findArticle(event)
-
-
   }
 
-
+  // this.history.pushState(null, 'login');
 
 
   render() {
@@ -75,20 +54,22 @@ class Articles extends Component {
       <Container fluid>
 
         <Jumbotron>
-          <h1>Articles Results</h1>
+          <h1>My Saved Articles</h1>
           <Link to={"/"}>
-            <strong>
-              Back To Search
-                    </strong>
+            <strong>Back To Search</strong>
+          </Link>
+
+          <Link to={"/articles"}>
+            <strong>Back To Article Results</strong>
           </Link>
 
         </Jumbotron>
-        {this.state.articles.length ? (
+        {this.state.savedArticles.length ? (
 
           <ul>
-            {this.state.articles.map(article => (
+            {this.state.savedArticles.map(article => (
               <li key={article._id}>
-                <button onClick={() => this.saveArticle(article)}>Save</button>
+                <button onClick={() => this.removeArticle(article._id)}>Remove</button>
                 {/* <DeleteBtn onClick={() => this.deleteArticle(article._id)} /> */}
                 <div>{article.headline}</div>
                 <div>{article.snippet}</div>
@@ -111,4 +92,4 @@ class Articles extends Component {
   }
 }
 
-export default Articles;
+export default Saved;

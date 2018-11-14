@@ -43,13 +43,13 @@ class Search extends Component {
       })
         .then(res => {
           this.setState({ search: "", start: "", end: "", qty: "" });
-          this.handleClick();
+          this.redirectArticles();
         }
           )
         .catch(err => console.log(err));
     };
 
-    handleClick = () => {
+    redirectArticles = () => {
       this.props.history.push("/articles");
   }
  
@@ -61,6 +61,9 @@ class Search extends Component {
           <Col size="md-6">
             <Jumbotron>
               <h1>What article Should I Read?</h1>
+              <Link to={"/articles/saved"}>
+                <strong>Saved Articles</strong>
+              </Link>
             </Jumbotron>
             <form>
             <Input
@@ -98,7 +101,6 @@ class Search extends Component {
               </FormBtn>
             </form>
 
-            <button onClick={this.handleClick}>redirect</button>
           </Col>
 
          

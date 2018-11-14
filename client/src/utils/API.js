@@ -14,6 +14,8 @@ export default {
   //    })
   // },
 
+  
+
   // Gets the article with the given id
   getArticle: function(id) {
     return axios.get("/api/articles/" + id);
@@ -35,5 +37,14 @@ export default {
     console.log(articleData)
     // console.log("/api/articles/save/"+ articleData.articleId)
     return axios.post("/api/save", articleData);
+  },
+
+  getSavedArticles: function() {
+    return axios.get("/api/save/all");
+  },
+
+  removeArticle: function(id) {
+    console.log("this is the id to remove: " + id);
+    return axios.post("/api/save/delete/" + id);
   }
 };
