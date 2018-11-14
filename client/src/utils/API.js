@@ -24,15 +24,16 @@ export default {
   },
   // adds searches to the database
   findArticle: function(articleData) {
-    console.log("this is to add searched articles")
+    console.log("Client API: findArtile()")
     console.log(articleData)
     return axios.post("/api/articles", articleData);
   },
 
     // Saves a article to the database
   saveArticle: function(articleData) {
-    console.log("2222222222222")
-    console.log("/api/articles/"+ articleData.articleId)
-    return axios.post("/api/articles/"+ articleData.articleId, articleData);
+    console.log("Client API: saveArticle()")
+    console.log(articleData)
+    // console.log("/api/articles/save/"+ articleData.articleId)
+    return axios.post("/api/save", articleData);
   }
 };

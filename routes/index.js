@@ -20,7 +20,7 @@ console.log("inside the get(all)")
 
   db.Articles.find({})
   .then(function(dbArticle) {
-    console.log("after getting all from db")
+    console.log("dbArticles.find({})")
     // If we were able to successfully find Articles, send them back to the client
     res.json(dbArticle);
   })
@@ -28,22 +28,19 @@ console.log("inside the get(all)")
     // If an error occurred, send it to the client
     res.json(err);
   });
-
-
-  
-
 })
 
 
 // this route will save an article to the saved collection
-router.post("/api/articles/:id", function(req, req) {
+router.post("/api/save", function(req, res) {
   // articlesController.findById(req.body);
   console.log("this is inside the post for saved article")
   console.log(req.body);
+  console.log(typeof(req))
   
-  // db.SavedArticles.create(req.body)
-  // .then()
-  // .catch()
+  db.SavedArticles.create(req.body)
+  .then()
+  .catch()
 
 })
 
@@ -52,7 +49,8 @@ router.post("/api/articles/:id", function(req, req) {
 // then call the NYT api 
 // then send the response to the database thru /controllers/databaseController.js
 router.post("/api/articles", function (req, res) {
-  // console.log("this is inside the index.js router")
+
+  console.log("this is inside the post for article search")
   // console.log(req.body);
   
   API(req.body)

@@ -35,6 +35,23 @@ class Articles extends Component {
   saveArticle = event => {
     console.log("saving");
     console.log(event)
+    // const data = {
+    //   headline: event.headline,
+    //   snippet: event.snippet,
+    //   url: event.url,
+    //   pub_date: event.pub_date,
+    //   source: event.source,
+    //   _id: event._id,
+    // }
+
+//     console.log(`
+//     ${event.headline}
+//    ${ event.snippet}
+//    ${event.url}
+//     ${event.pub_date}
+//    ${event.source}
+//  ${event._id}
+//     `)
     // event.preventDefault();
 
     API.saveArticle(event)
