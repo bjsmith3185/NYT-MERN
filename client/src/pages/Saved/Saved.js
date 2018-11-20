@@ -11,42 +11,45 @@ class Saved extends Component {
 
   state = {
     savedArticles: [],
-  };
+    note: "",
+    };
 
   componentDidMount() {
     this.loadSavedArticles();
   }
 
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    var data = {note: this.state.note};
+    
+      API.updateSavedArticle(event, data )
+        .then(res => {
+          this.setState({ note: ""}) //  savedArticles: res.data, 
+          this.loadSavedArticles();
+        })
+        .catch(err => console.log(err));
+    };
+
   loadSavedArticles = () => {
-    console.log("running loadSavedArticles()")
     API.getSavedArticles()
       .then(res => {
-        console.log("this is the retrun from get saved articles res.data")
-        console.log(res.data);
         this.setState({ savedArticles: res.data })
-        // console.log("inside getArticles()")
-        // console.log(res)
-        console.log("this is the savedArticles []")
-        console.log(this.state.savedArticles);
       })
       .catch(err => console.log(err));
   };
 
   removeArticle = event => {
-    console.log("removing");
-    console.log(event)
-    
+  
     API.removeArticle(event)
-    // .then(res => this.loadArticles())
-    .then(function(data) {
-      console.log("this is the return from removing article")
-      console.log(data)
-    })
+    .then(function(data) {})
     .catch(err => console.log(err));
-
   }
-
-  // this.history.pushState(null, 'login');
 
 
   render() {
@@ -70,14 +73,26 @@ class Saved extends Component {
             {this.state.savedArticles.map(article => (
               <li key={article._id}>
                 <button onClick={() => this.removeArticle(article._id)}>Remove</button>
-                {/* <DeleteBtn onClick={() => this.deleteArticle(article._id)} /> */}
+                <div> this is the id: {article._id}</div>
                 <div>{article.headline}</div>
                 <div>{article.snippet}</div>
                 <a href={article.url}> Link </a>
                 <div>{article.pub_date}</div>
                 <div>{article.source}</div>
+                <div>{article.note}</div>
                 {/* <image src={article.image} /> */}
-
+                <div>
+                  <textarea 
+                  className="form-control" 
+                  rows="3"
+                  value={this.state.note}
+                  onChange={this.handleInputChange}
+                  name="note"
+                  placeholder="type note here"
+                  >
+                  </textarea>
+                  <button onClick= {() => this.handleFormSubmit(article._id)}>Add Note </button>
+                </div>
 
               </li>
             ))}

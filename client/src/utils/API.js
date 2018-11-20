@@ -6,16 +6,6 @@ export default {
     return axios.get("/api");
   },
 
-  // getArticles: function() {
-  //    axios.get("/")
-  //    .then(data => {
-  //      console.log(data)
-  //      return data;
-  //    })
-  // },
-
-  
-
   // Gets the article with the given id
   getArticle: function(id) {
     return axios.get("/api/articles/" + id);
@@ -26,16 +16,11 @@ export default {
   },
   // adds searches to the database
   findArticle: function(articleData) {
-    console.log("Client API: findArtile()")
-    console.log(articleData)
     return axios.post("/api/articles", articleData);
   },
 
     // Saves a article to the database
   saveArticle: function(articleData) {
-    console.log("Client API: saveArticle()")
-    console.log(articleData)
-    // console.log("/api/articles/save/"+ articleData.articleId)
     return axios.post("/api/save", articleData);
   },
 
@@ -44,7 +29,11 @@ export default {
   },
 
   removeArticle: function(id) {
-    console.log("this is the id to remove: " + id);
     return axios.post("/api/save/delete/" + id);
-  }
+  },
+
+  updateSavedArticle: function(id, data) {
+    return axios.post("/api/update/" + id , data);
+  },
+
 };

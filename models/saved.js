@@ -10,7 +10,7 @@ const savedArticleSchema = new Schema({
   articleId: String,
   image: String,
   saved: Boolean, 
-  notes: String,
+  note: String,
   date: { type: Date, default: Date.now }
 });
 

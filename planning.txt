@@ -1,7 +1,8 @@
 
-Database; nytreact
+Database; nytArticles
 
-Collection; articles
+Collection; articles , savedarticles ,
+
 
 
 
