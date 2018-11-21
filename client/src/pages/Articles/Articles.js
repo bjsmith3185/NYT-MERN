@@ -30,20 +30,20 @@ class Articles extends Component {
     event.saved = true;
 
     API.saveArticle(event)
-    .then(function(data) {
+      .then(function (data) {
 
         if (data.data.saved === false) {
           console.log("saved article is false")
           //  API.findArticle(data.data.articleId)
           API.findArticle(data)
-           .then()
+            .then()
         } else {
 
         }
-   
 
-    })
-    .catch(err => console.log(err));
+
+      })
+      .catch(err => console.log(err));
 
 
   }
@@ -58,9 +58,10 @@ class Articles extends Component {
         <Jumbotron>
           <h1>Articles Results</h1>
           <Link to={"/"}>
-            <strong>
-              Back To Search
-                    </strong>
+            <strong>Back To Search</strong>
+          </Link>
+          <Link to={"/articles/saved"}>
+              <strong>Saved Articles</strong>
           </Link>
 
         </Jumbotron>

@@ -64,6 +64,9 @@ class Search extends Component {
               <Link to={"/articles/saved"}>
                 <strong>Saved Articles</strong>
               </Link>
+              <Link to={"/articles/articles"}>
+                <strong>Article Results</strong>
+              </Link>
             </Jumbotron>
             <form>
             <Input
@@ -91,10 +94,11 @@ class Search extends Component {
                 onChange={this.handleInputChange}
                 name="qty"
                 placeholder="Qty (required)"
+                // defaultValue={this.state.qty || "5"}
               />
               
               <FormBtn
-                disabled={!(this.state.search && this.state.start && this.state.end && this.state.qty)}
+                disabled={!(this.state.search && this.state.start && this.state.end)}
                 onClick={this.handleFormSubmit}
               >
                 Add item

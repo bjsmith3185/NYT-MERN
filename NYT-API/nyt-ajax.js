@@ -6,13 +6,13 @@ var axios = require('axios');
 var APIKey = 'fc95978666c547148b6c203afe174c81';
 
 // module.exports = function runQuery(search, start, end, qty) {
-    module.exports = function nytAPI(data) {
-        console.log("this is the data passed into api()")
-        console.log(data.body);
-        var search = data.search;
-        var start = data.start;
-        var end = data.end;
-        var numberOfArticles = parseInt(data.qty);
+module.exports = function nytAPI(data) {
+    console.log("this is the data passed into api()")
+    console.log(data);
+    var search = data.search;
+    var start = data.start;
+    var end = data.end;
+    var numberOfArticles = parseInt(data.qty);
 
 
     return axios.get('https://api.nytimes.com/svc/search/v2/articlesearch.json', {
