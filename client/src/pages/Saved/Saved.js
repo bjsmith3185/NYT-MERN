@@ -12,6 +12,8 @@ class Saved extends Component {
   state = {
     savedArticles: [],
     note: "",
+    addnote: "",
+    buttonLabel: "Edit Note",
   };
 
   componentDidMount() {
@@ -49,7 +51,32 @@ class Saved extends Component {
     API.removeArticle(event)
       .then(function (data) { })
       .catch(err => console.log(err));
-  }
+  };
+
+  seeNote = event => {
+    console.log("this should be article_id")
+    console.log(event)
+    if(this.state.addnote === "") {
+      this.setState({
+        addnote: event
+      })
+    } else {
+      this.setState({
+        addnote: ""
+      })
+    }
+
+    if(this.state.buttonLabel === "Edit Note") {
+      this.setState({
+        buttonLabel: "Close Note"
+      })
+    } else {
+      this.setState({
+        buttonLabel: "Edit Note"
+      })
+    }
+    
+  };
 
 
   render() {
@@ -81,18 +108,28 @@ class Saved extends Component {
                 <div>{article.source}</div>
                 <div>{article.note}</div>
                 {/* <image src={article.image} /> */}
+
                 <div>
-                  <textarea
-                    className="form-control"
-                    rows="3"
-                    value={this.state.note}
-                    onChange={this.handleInputChange}
-                    name="note"
-                    placeholder="type note here"
-                  >
-                  </textarea>
-                  <button onClick={() => this.handleFormSubmit(article._id)}>Add Note </button>
+                  <button onClick={() => this.seeNote(article._id)}>{this.state.buttonLabel}</button>
                 </div>
+              {this.state.addnote === article._id ? (
+                <div> 
+                <textarea
+                  className="form-control"
+                  rows="3"
+                  value={this.state.note}
+                  onChange={this.handleInputChange}
+                  name="note"
+                  placeholder="type note here"
+                >
+                </textarea>
+                <button onClick={() => this.handleFormSubmit(article._id)}>Submit Note </button>
+              </div>
+              ) : (
+                <div></div>
+              )}
+
+                
 
               </li>
             ))}
